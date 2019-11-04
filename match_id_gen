@@ -1,0 +1,14 @@
+import requests
+import json
+import sys
+
+URL = 'https://na1.api.riotgames.com/lol/match/v4/matches/3187138923'
+
+params = {'api_key':sys.argv[1]}
+
+r = requests.get(url = URL, params = params)
+for player_id in r.json()["participantIdentities"]:
+	print(player_id["player"]["accountId"])
+#print(json.dumps(r.json()["participantIdentities"], indent = 4))
+
+
