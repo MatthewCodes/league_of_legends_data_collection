@@ -3,7 +3,7 @@ import json
 import sys
 import time
 import csv
-
+import pandas
 def get_players(match_request):
     player_ids = []
     for player_id in match_request.json()["participantIdentities"]:
@@ -121,7 +121,7 @@ row = {"gameId": [],
        "stats.perk4": [],
        "stats.perk5": [],
        "stats.perkPrimaryStyle": [],
-       "stats.perkSubStyle": []: [],,
+       "stats.perkSubStyle": [],
        "stats.statPerk0": [],
        "stats.statPerk1": [],
        "stats.statPerk2": [],
@@ -144,6 +144,7 @@ row = {"gameId": [],
        "player.summonerId": [],
        "player.matchHistoryUri": [],
       }
+
 print(json.dumps(r.json(), indent=4))
 
 player_ids = get_players(r)
@@ -169,8 +170,10 @@ for game in games:
     gameURL = 'https://na1.api.riotgames.com/lol/match/v4/matches/' + str(game)
     new_request = requests.get(url = gameURL, params = params)
     print("This is the output for a match request")
-    row
+    populate(row, new_request)
     break
 #print(json.dumps(r.json()["participantIdentities"], indent = 4))
 
 
+def populate(data, request):
+    data['gameId'].append(new_request.json()['gameId'])
