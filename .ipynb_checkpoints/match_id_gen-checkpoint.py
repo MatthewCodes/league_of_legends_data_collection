@@ -26,10 +26,10 @@ with open('league.csv', 'wb') as csvfile:
 # Runes = Top 2 most utilized runes with this champion
 # Spells= Given
 # Win Rate = Wins/Total y games for champion
-# Pick Rate = Picks + games / All games
+# Pick Rate = Picks games / All games
 # Perks = Top Perks for champion 
 # Difficulty = Given
-            #print(json.dumps(r.json(), indent=4))
+            
 
 player_ids = get_players(r)
 
